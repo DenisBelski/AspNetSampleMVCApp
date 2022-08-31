@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetSampleMVCApp", "AspNetSampleMVCApp\AspNetSampleMVCApp.csproj", "{70D51B1B-7191-4D39-A187-178E10FCDFA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSampleMVCApp", "AspNetSampleMVCApp\AspNetSampleMVCApp.csproj", "{70D51B1B-7191-4D39-A187-178E10FCDFA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetSample.Core", "AspNetSample.Core\AspNetSample.Core.csproj", "{5B23A7F1-C2FF-40D1-9820-A26F002BEB82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetSample.Business", "AspNetSample.Business\AspNetSample.Business.csproj", "{CC775D32-88A2-4958-8585-7E3897C08973}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{70D51B1B-7191-4D39-A187-178E10FCDFA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70D51B1B-7191-4D39-A187-178E10FCDFA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70D51B1B-7191-4D39-A187-178E10FCDFA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B23A7F1-C2FF-40D1-9820-A26F002BEB82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B23A7F1-C2FF-40D1-9820-A26F002BEB82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B23A7F1-C2FF-40D1-9820-A26F002BEB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B23A7F1-C2FF-40D1-9820-A26F002BEB82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC775D32-88A2-4958-8585-7E3897C08973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC775D32-88A2-4958-8585-7E3897C08973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC775D32-88A2-4958-8585-7E3897C08973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC775D32-88A2-4958-8585-7E3897C08973}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

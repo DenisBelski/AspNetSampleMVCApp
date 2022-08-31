@@ -1,3 +1,7 @@
+using AspNetSample.Business.ServicesImplementations;
+using AspNetSample.Core;
+using AspNetSample.Core.Abstractions;
+
 namespace AspNetSampleMVCApp
 {
     public class Program
@@ -9,6 +13,10 @@ namespace AspNetSampleMVCApp
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddTransient<IArticleService, ArticleService>();
+            //builder.Services.AddScoped<IArticleService, ArticleService>();
+            builder.Services.AddSingleton<ArticlesStorage>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -18,7 +26,7 @@ namespace AspNetSampleMVCApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-             
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
