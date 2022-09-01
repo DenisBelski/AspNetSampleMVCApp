@@ -50,8 +50,19 @@ namespace AspNetSampleMVCApp.Controllers
 
         public async Task<IActionResult> Details(Guid id)
         {
-            // get concrete article
-            return Ok();
+            var dto = await _articleService.GetArticleByIdAsync(id);
+
+            if (dto != null)
+            {
+                //ViewData["model"] = dto;
+                //ViewBag.Model = dto;
+
+                return View(dto);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         [HttpGet]

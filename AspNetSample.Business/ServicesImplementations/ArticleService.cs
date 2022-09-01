@@ -2,7 +2,6 @@
 using AspNetSample.Core.Abstractions;
 using AspNetSample.Core.DataTransferObjects;
 
-
 namespace AspNetSample.Business.ServicesImplementations
 {
     public class ArticleService : IArticleService
@@ -11,6 +10,14 @@ namespace AspNetSample.Business.ServicesImplementations
         public ArticleService(ArticlesStorage articlesStorage)
         {
             _articlesStorage = articlesStorage;
+        }
+
+        public async Task<ArticleDto> GetArticleByIdAsync(Guid id)
+        {
+            var dto = _articlesStorage.ArticlesList
+                .FirstOrDefault(ArticleDto => ArticleDto.Id.Equals(id));
+
+            return dto;
         }
 
         public async Task<List<ArticleDto>> GetArticlesPageNumberAndPageSizeAsync(int pageNumber, int pageSize)

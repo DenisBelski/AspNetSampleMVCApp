@@ -6,5 +6,7 @@ namespace AspNetSample.Core.Abstractions
     {
         Task<List<ArticleDto>> GetArticlesPageNumberAndPageSizeAsync(int pageNumber, int pageSize);
         Task<List<ArticleDto>> GetArticlesPageNumberAndPageSizeAsync();
+
+        Task<ArticleDto> GetArticleByIdAsync(Guid id);
     }
 }

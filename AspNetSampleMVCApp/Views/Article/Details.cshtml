@@ -1,0 +1,26 @@
+﻿
+
+@model ArticleDto
+
+@{
+    //var item = ViewData["model"];
+    ViewData["Title"] = "Article details";
+}
+
+<div>
+    <h3>
+        @Model.Title
+    </h3>
+    <h5>
+        @Model.Category
+    </h5>
+    <i> @Model.Id </i>
+    <div>
+        <p>
+            @Model.ShortSummary
+        </p>
+    </div>
+    <h6>
+        @Model.PublicationDate
+    </h6>
+</div>
