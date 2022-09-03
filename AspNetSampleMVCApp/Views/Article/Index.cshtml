@@ -8,28 +8,22 @@
 <h1>Articles</h1>
 
 
-@foreach (var item in Model) {
-        <div>
-            <h3>
-                @Html.DisplayFor(modelItem => item.Title)
-            </h3>
-            <h4>
-                @Html.DisplayFor(modelItem => item.Category)
-            </h4>
-            <i>
-                @Html.DisplayFor(modelItem => item.Id)
-            </i>
-            <div>
-                <p>
-                    @Html.DisplayFor(modelItem => item.ShortSummary)
-                </p>
-            </div>
-            <h6>
-                @Html.DisplayFor(modelItem => item.PublicationDate)
-            </h6>
-
-            <a class="btn btn-primary" href="~/article/details/@item.Id"> Read details </a>
-        
-        </div>
+@if (Model.Any())
+{
+    foreach (var item in Model)
+    {
+        @await Html.PartialAsync("ArticlePreview", item);
+        //Html.RenderPartialAsync - работает быстрее
+    }
 }
 
+
+@*@section CssStyles
+{
+    <style>
+            h1{
+        color: red;
+    }
+    </style>
+}
+*@

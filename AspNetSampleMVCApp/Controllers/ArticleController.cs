@@ -1,6 +1,7 @@
 ﻿using AspNetSample.Business.ServicesImplementations;
 using AspNetSample.Core;
 using AspNetSample.Core.Abstractions;
+using AspNetSample.Core.DataTransferObjects;
 using AspNetSampleMVCApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,6 +48,12 @@ namespace AspNetSampleMVCApp.Controllers
                 throw;
             }
         }
+
+        // контоллеры для PartialView не нужны! (без этого блока также работает)
+        //public IActionResult ArticlePreview(ArticleDto dto)
+        //{
+        //    return PartialView(dto);
+        //}
 
         public async Task<IActionResult> Details(Guid id)
         {

@@ -1,6 +1,4 @@
-﻿
-
-@model ArticleDto
+﻿@model ArticleWithCommentsViewModel
 
 @{
     //var item = ViewData["model"];
@@ -9,18 +7,32 @@
 
 <div>
     <h3>
-        @Model.Title
+        @Model.Article.Title
     </h3>
     <h5>
-        @Model.Category
+        @Model.Article.Category
     </h5>
-    <i> @Model.Id </i>
     <div>
         <p>
-            @Model.ShortSummary
+            @Model.Article.Text
         </p>
     </div>
     <h6>
-        @Model.PublicationDate
+        @Model.Article.PublicationDate
     </h6>
+</div>
+
+<hr>
+
+<div>
+    <h3>
+        Comments
+    </h3>
+
+    @foreach (var comment in Model.Comments)
+    {
+        <p>
+            comment;
+        </p>
+    }
 </div>
