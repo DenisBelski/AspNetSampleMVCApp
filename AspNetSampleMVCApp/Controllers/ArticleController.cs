@@ -20,12 +20,6 @@ namespace AspNetSampleMVCApp.Controllers
         
         public async Task<IActionResult> Index(int page)
         {
-            // var articles = Articles.ArticlesList
-            //    .Skip(page * _pageSize)
-            //    .Take(_pageSize)
-            //    .ToList();
-            // return View(articles);
-
             try
             {
                 var articles = await _articleService

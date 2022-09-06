@@ -1,6 +1,9 @@
-﻿using AspNetSample.Core;
+﻿using AspNetSample.DataBase;
+using AspNetSample.Core;
 using AspNetSample.Core.Abstractions;
 using AspNetSample.Core.DataTransferObjects;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace AspNetSample.Business.ServicesImplementations
 {

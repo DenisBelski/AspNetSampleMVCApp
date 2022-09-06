@@ -1,6 +1,8 @@
+using AspNetSample.DataBase;
 using AspNetSample.Business.ServicesImplementations;
 using AspNetSample.Core;
 using AspNetSample.Core.Abstractions;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNetSampleMVCApp
 {
@@ -13,9 +15,12 @@ namespace AspNetSampleMVCApp
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddTransient<IArticleService, ArticleService>();
-            //builder.Services.AddScoped<IArticleService, ArticleService>();
-            builder.Services.AddSingleton<ArticlesStorage>();
+            var connectionString = "Server=DESKTOP-LNVP1TV;Database=GoodNewsAggregatorDataBase;Trusted_Connection=True;";
+
+            builder.Services.AddDbContext<GoodNewsAggregatorContext>(
+                optionsBuilder => optionsBuilder.UseSqlServer(connectionString));
+            
+            builder.Services.AddScoped<IArticleService, ArticleService>();
 
             var app = builder.Build();
 
