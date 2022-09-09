@@ -4,7 +4,7 @@ using AspNetSample.Core;
 using AspNetSample.Core.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace AspNetSampleMVCApp
+namespace AspNetSampleMvcApp
 {
     public class Program
     {
@@ -17,9 +17,8 @@ namespace AspNetSampleMVCApp
 
             var connectionString = "Server=DESKTOP-LNVP1TV;Database=GoodNewsAggregatorDataBase;Trusted_Connection=True;";
 
-            builder.Services.AddDbContext<GoodNewsAggregatorContext>(
-                optionsBuilder => optionsBuilder.UseSqlServer(connectionString));
-            
+            builder.Services.AddDbContext<GoodNewsAggregatorContext>(optionsBuilder => optionsBuilder.UseSqlServer(connectionString));
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddScoped<IArticleService, ArticleService>();
 
             var app = builder.Build();

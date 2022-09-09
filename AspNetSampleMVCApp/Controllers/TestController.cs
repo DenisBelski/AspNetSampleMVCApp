@@ -1,7 +1,7 @@
-﻿using AspNetSampleMVCApp.Models;
+﻿using AspNetSampleMvcApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetSampleMVCApp.Controllers
+namespace AspNetSampleMvcApp.Controllers
 {
     public class TestController : Controller
     {

@@ -13,7 +13,6 @@ namespace AspNetSample.DataBase
         public GoodNewsAggregatorContext(DbContextOptions<GoodNewsAggregatorContext> options)
             : base(options)
         {
-
         }
     }
 }

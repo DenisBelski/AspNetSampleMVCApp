@@ -1,6 +1,6 @@
 ﻿using AspNetSample.Core.DataTransferObjects;
 
-namespace AspNetSampleMVCApp.Models
+namespace AspNetSampleMvcApp.Models
 {
     public class ArticleWithCommentsViewModel
     {

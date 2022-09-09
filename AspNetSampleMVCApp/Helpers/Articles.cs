@@ -1,6 +1,6 @@
-﻿using AspNetSampleMVCApp.Models;
+﻿using AspNetSampleMvcApp.Models;
 
-namespace AspNetSampleMVCApp.Helpers
+namespace AspNetSampleMvcApp.Helpers
 {
     public class Articles
     {

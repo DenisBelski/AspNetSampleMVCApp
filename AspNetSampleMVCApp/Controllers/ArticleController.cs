@@ -2,10 +2,10 @@
 using AspNetSample.Core;
 using AspNetSample.Core.Abstractions;
 using AspNetSample.Core.DataTransferObjects;
-using AspNetSampleMVCApp.Models;
+using AspNetSampleMvcApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetSampleMVCApp.Controllers
+namespace AspNetSampleMvcApp.Controllers
 {
     public class ArticleController : Controller
     {
@@ -23,7 +23,7 @@ namespace AspNetSampleMVCApp.Controllers
             try
             {
                 var articles = await _articleService
-                    .GetArticlesPageNumberAndPageSizeAsync(page, _pageSize);
+                    .GetArticlesByPageNumberAndPageSizeAsync(page, _pageSize);
 
                 //HttpContext.RequestServices.GetServices(typeof(IArticleService)); - иногда применяется, сейчас считается антипаттерном
 
