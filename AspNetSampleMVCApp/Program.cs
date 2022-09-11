@@ -3,6 +3,7 @@ using AspNetSample.Business.ServicesImplementations;
 using AspNetSample.Core;
 using AspNetSample.Core.Abstractions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Routing.Constraints;
 
 namespace AspNetSampleMvcApp
 {
@@ -15,13 +16,17 @@ namespace AspNetSampleMvcApp
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            var connectionString = "Server=DESKTOP-LNVP1TV;Database=GoodNewsAggregatorDataBase;Trusted_Connection=True;";
+            var connectionString = builder.Configuration.GetConnectionString("Default");
+                //"Server=DESKTOP-LNVP1TV;Database=GoodNewsAggregatorDataBase;Trusted_Connection=True;";
 
             builder.Services.AddDbContext<GoodNewsAggregatorContext>(optionsBuilder => optionsBuilder.UseSqlServer(connectionString));
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddScoped<IArticleService, ArticleService>();
 
             var app = builder.Build();
+
+            builder.Configuration.AddJsonFile("secrets.json");
+            //builder.Configuration.Add(new TxtConfigurationSource());
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -38,9 +43,19 @@ namespace AspNetSampleMvcApp
 
             app.UseAuthorization();
 
+            //app.MapControllerRoute(
+            //    name: "default1",
+            //    pattern: "{action}/{controller}");
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.MapControllerRoute(
+                name: "article",
+                pattern: "{page}/{action=Index}/{controller=Article}",
+                defaults: new {controller= "Article", action = "Index"},
+                constraints: new {page = new IntRouteConstraint()});
 
             app.Run();
         }

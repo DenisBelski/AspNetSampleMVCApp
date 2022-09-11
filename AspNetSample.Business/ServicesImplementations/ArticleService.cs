@@ -3,6 +3,7 @@ using AspNetSample.Core.Abstractions;
 using AspNetSample.Core.DataTransferObjects;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace AspNetSample.Business.ServicesImplementations;
 
@@ -10,17 +11,22 @@ public class ArticleService : IArticleService
 {
     private readonly IMapper _mapper;
     private readonly GoodNewsAggregatorContext _databaseContext;
-
+    private readonly IConfiguration _configuration;
     public ArticleService(GoodNewsAggregatorContext databaseContext,
-        IMapper mapper)
+        IMapper mapper,
+        IConfiguration configuration)
     {
         _databaseContext = databaseContext;
         _mapper = mapper;
+        _configuration = configuration;
     }
 
 
     public async Task<List<ArticleDto>> GetArticlesByPageNumberAndPageSizeAsync(int pageNumber, int pageSize)
     {
+        var myApiDey = _configuration.GetSection("UserSecrets")["MyApiKey"];
+        var passwordSalt = _configuration["UserSecrets:PasswordSalt"];
+
         var list = await _databaseContext.Articles
             .Skip(pageNumber * pageSize)
             .Take(pageSize)
