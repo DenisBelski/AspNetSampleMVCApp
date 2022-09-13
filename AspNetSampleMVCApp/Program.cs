@@ -4,6 +4,8 @@ using AspNetSample.Core;
 using AspNetSample.Core.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Routing.Constraints;
+using Serilog;
+using Serilog.Events;
 
 namespace AspNetSampleMvcApp
 {
@@ -12,6 +14,11 @@ namespace AspNetSampleMvcApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Host.UseSerilog((ctx, lc) => 
+                lc.WriteTo.File(@"D:\IT\C#\AspNetSampleMVCApp\Logs\data.log",
+                LogEventLevel.Information)
+                .WriteTo.Console(LogEventLevel.Verbose));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

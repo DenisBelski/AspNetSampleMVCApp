@@ -24,16 +24,24 @@ public class ArticleService : IArticleService
 
     public async Task<List<ArticleDto>> GetArticlesByPageNumberAndPageSizeAsync(int pageNumber, int pageSize)
     {
-        var myApiDey = _configuration.GetSection("UserSecrets")["MyApiKey"];
-        var passwordSalt = _configuration["UserSecrets:PasswordSalt"];
+        try
+        {
+            var myApiDey = _configuration.GetSection("UserSecrets")["MyApiKey"];
+            var passwordSalt = _configuration["UserSecrets:PasswordSalt"];
 
-        var list = await _databaseContext.Articles
-            .Skip(pageNumber * pageSize)
-            .Take(pageSize)
-            .Select(article => _mapper.Map<ArticleDto>(article))
-            .ToListAsync();
+            var list = await _databaseContext.Articles
+                .Skip(pageNumber * pageSize)
+                .Take(pageSize)
+                .Select(article => _mapper.Map<ArticleDto>(article))
+                .ToListAsync();
 
-        return list;
+            return list;
+        }
+        catch (Exception)
+        {
+            // todo add logger here
+            throw;
+        }
     }
 
     public async Task<List<ArticleDto>> GetNewArticlesFromExternalSourcesAsync()
