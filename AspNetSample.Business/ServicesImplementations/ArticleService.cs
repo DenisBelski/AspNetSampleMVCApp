@@ -4,6 +4,7 @@ using AspNetSample.Core.DataTransferObjects;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using AspNetSample.DataBase.Entities;
 
 namespace AspNetSample.Business.ServicesImplementations;
 
@@ -12,6 +13,7 @@ public class ArticleService : IArticleService
     private readonly IMapper _mapper;
     private readonly GoodNewsAggregatorContext _databaseContext;
     private readonly IConfiguration _configuration;
+
     public ArticleService(GoodNewsAggregatorContext databaseContext,
         IMapper mapper,
         IConfiguration configuration)
@@ -20,7 +22,6 @@ public class ArticleService : IArticleService
         _mapper = mapper;
         _configuration = configuration;
     }
-
 
     public async Task<List<ArticleDto>> GetArticlesByPageNumberAndPageSizeAsync(int pageNumber, int pageSize)
     {
@@ -52,10 +53,25 @@ public class ArticleService : IArticleService
 
     public async Task<ArticleDto> GetArticleByIdAsync(Guid id)
     {
-        var dto = new ArticleDto();
-        //_articlesStorage.ArticlesList
-        //.FirstOrDefault(articleDto => articleDto.Id.Equals(id));
+        var entity = await _databaseContext.Articles.FirstOrDefaultAsync(article => article.Id.Equals(id));
+        var dto = _mapper.Map<ArticleDto>(entity);
 
         return dto;
+    }
+
+    public async Task<int> CreateArticleAsync(ArticleDto dto)
+    {
+        var entity = _mapper.Map<Article>(dto);
+
+        if (entity != null)
+        {
+            await _databaseContext.Articles.AddAsync(entity);
+            var addingResult = await _databaseContext.SaveChangesAsync();
+            return addingResult;
+        }
+        else
+        {
+            throw new ArgumentException(nameof(dto));
+        }
     }
 }

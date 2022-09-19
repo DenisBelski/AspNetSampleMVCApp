@@ -1,13 +1,11 @@
 ﻿using AspNetSample.Core;
 
-namespace AspNetSample.DataBase.Entities
+namespace AspNetSampleMvcApp.Models
 {
-    public class Source
+    public class CreateSourceModel
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
         public SourceType SourceType { get; set; }
-        public List<Article> Articles { get; set; }
     }
 }

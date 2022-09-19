@@ -1,13 +1,12 @@
 ﻿using AspNetSample.Core;
 
-namespace AspNetSample.DataBase.Entities
+namespace AspNetSample.Core.DataTransferObjects
 {
-    public class Source
+    public class SourceDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
         public SourceType SourceType { get; set; }
-        public List<Article> Articles { get; set; }
     }
 }

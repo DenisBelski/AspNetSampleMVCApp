@@ -15,10 +15,10 @@ namespace AspNetSampleMvcApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Host.UseSerilog((ctx, lc) => 
-                lc.WriteTo.File(@"D:\IT\C#\AspNetSampleMVCApp\Logs\data.log",
-                LogEventLevel.Information)
-                .WriteTo.Console(LogEventLevel.Verbose));
+            //builder.Host.UseSerilog((ctx, lc) => 
+            //    lc.WriteTo.File(@"D:\IT\C#\AspNetSampleMVCApp\Logs\data.log",
+            //    LogEventLevel.Information)
+            //    .WriteTo.Console(LogEventLevel.Verbose));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -28,7 +28,9 @@ namespace AspNetSampleMvcApp
 
             builder.Services.AddDbContext<GoodNewsAggregatorContext>(optionsBuilder => optionsBuilder.UseSqlServer(connectionString));
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            
             builder.Services.AddScoped<IArticleService, ArticleService>();
+            builder.Services.AddScoped<ISourceService, SourceService>();
 
             var app = builder.Build();
 

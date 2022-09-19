@@ -1,4 +1,4 @@
-﻿namespace AspNetSample.DataBase.Entities
+﻿namespace AspNetSample.Core
 {
     public enum SourceType
     {
