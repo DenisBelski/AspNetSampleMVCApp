@@ -8,24 +8,34 @@
     
     @using (Html.BeginForm("Create", "Article", FormMethod.Post))
     {
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div>
             @Html.LabelFor(model => model.Title)
-            @Html.TextBoxFor(model => model.Title)
+            @Html.TextBoxFor(model => model.Title,new {@class="form-control"})
+            <span asp-validation-for="Title" class="text-danger"></span>
         </div>
+     @*   <div>
+            @Html.LabelFor(model => model.TitleConfirmation)
+            @Html.TextBoxFor(model => model.TitleConfirmation,new {@class="form-control"})
+            <span asp-validation-for="TitleConfirmation"></span>
+        </div>*@
         <br />
         <div>
-            @Html.LabelFor(model => model.Category)
-            @Html.TextBoxFor(model => model.Category)
+            @Html.LabelFor(model => model.Category, new { @class="form-label"})
+            @Html.TextBoxFor(model => model.Category,new {@class="form-control"})
+            <span asp-validation-for="Category" class="text-danger"></span>
         </div>
         <br />
         <div>
             @Html.LabelFor(model => model.ShortSummary, new { @class="form-label"})
             @Html.TextBoxFor(model => model.ShortSummary, new {@class="form-control", placeholder = "Article short summary"})
+            <span asp-validation-for="ShortSummary" class="text-danger"></span>
         </div>
         <br />
         <div>
-            @Html.LabelFor(model => model.Text)
-            @Html.TextAreaFor(model => model.Text)
+            @Html.LabelFor(model => model.Text, new { @class="form-label"})
+            @Html.TextAreaFor(model => model.Text,new {@class="form-control"} )
+            <span asp-validation-for="Text" class="text-danger"></span>
         </div>
         <br />
 
@@ -39,9 +49,16 @@
 
         <br />
 
-        <button>Submit</button>
+        <input type="submit" class="btn btn-primary" value="Submit">
     }
    @* <form method="post" action="~/article/create">*@
         
     @*</form>*@
 </div>
+
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+

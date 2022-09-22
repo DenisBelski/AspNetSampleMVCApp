@@ -88,19 +88,28 @@ namespace AspNetSampleMvcApp.Controllers
         {
             try
             {
-                if (model != null)
+                if (ModelState.IsValid)
                 {
+                    // часть серверной валидации, см. также DataAnnotations
+                    if (model.Title.ToUpperInvariant().Contains("123"))
+                    {
+                        ModelState.AddModelError("Title", "Article contains 123");
+                        return View(model);
+                    }
+
                     model.Id = Guid.NewGuid();
                     model.PublicationDate = DateTime.Now;
 
                     var dto = _mapper.Map<ArticleDto>(model);
-                    var result = await _articleService.CreateArticleAsync(dto);
+
+                    await _articleService.CreateArticleAsync(dto);
 
                     return RedirectToAction("Index", "Article");
                 }
+
                 else
                 {
-                    return BadRequest();
+                    return View(model);
                 }
             }
             catch (Exception ex)
