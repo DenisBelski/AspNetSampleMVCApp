@@ -32,6 +32,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AspNetSample.Business\AspNetSample.Business.csproj" />
     <ProjectReference Include="..\AspNetSample.Core\AspNetSample.Core.csproj" />
+    <ProjectReference Include="..\AspNetSample.Data.Repositories\AspNetSample.Data.Repositories.csproj" />
     <ProjectReference Include="..\AspNetSample.DataBase\AspNetSample.DataBase.csproj" />
   </ItemGroup>
 

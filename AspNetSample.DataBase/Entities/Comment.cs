@@ -1,6 +1,6 @@
 ﻿namespace AspNetSample.DataBase.Entities
 {
-    public class Comment
+    public class Comment : IBaseEntity
     {
         public Guid Id { get; set; }
         public string Text { get; set; }

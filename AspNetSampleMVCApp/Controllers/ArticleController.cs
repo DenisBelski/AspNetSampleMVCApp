@@ -140,13 +140,31 @@ namespace AspNetSampleMvcApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(TestModel model)
+        public async Task<IActionResult> Edit(ArticleModel model)
         {
             try
             {
                 if (model != null)
                 {
                     var dto = _mapper.Map<ArticleDto>(model);
+
+                    var sourceDto = await _articleService.GetArticleByIdAsync(model.Id);
+
+                    //should be sure that dto property naming is the same with entity property naming
+                    var patchList = new List<PatchModel>();
+                    if (dto != null)
+                    {
+                        if (dto.Title.Equals(sourceDto.Title))
+                        {
+                            patchList.Add(new PatchModel()
+                            {
+                                PropertyName = nameof(dto.Title),
+                                PropertyValue = dto.Title
+                            });
+                        }
+                    }
+
+                    await _articleService.PatchAsync(model.Id, patchList);
 
                     //await _articleService.CreateArticleAsync(dto);
 

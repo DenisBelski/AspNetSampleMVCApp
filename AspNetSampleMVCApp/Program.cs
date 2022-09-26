@@ -1,9 +1,14 @@
 using AspNetSample.DataBase;
+using AspNetSample.DataBase.Entities;
 using AspNetSample.Business.ServicesImplementations;
 using AspNetSample.Core;
 using AspNetSample.Core.Abstractions;
-using Microsoft.EntityFrameworkCore;
+using AspNetSample.Data.Abstractions;
+using AspNetSample.Data.Abstractions.Repositories;
+using AspNetSample.Data.Repositories;
+using AspNetSampleMvcApp.ConfigurationProviders;
 using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
 
@@ -28,9 +33,14 @@ namespace AspNetSampleMvcApp
 
             builder.Services.AddDbContext<GoodNewsAggregatorContext>(optionsBuilder => optionsBuilder.UseSqlServer(connectionString));
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            
+
             builder.Services.AddScoped<IArticleService, ArticleService>();
             builder.Services.AddScoped<ISourceService, SourceService>();
+            builder.Services.AddScoped<IAdditionalArticleRepository, ArticleGenericRepository>();
+            builder.Services.AddScoped<IRepository<Source>, Repository<Source>>();
+            builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
+            builder.Services.AddScoped<ISourceRepository, SourceRepository>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var app = builder.Build();
 

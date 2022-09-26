@@ -13,8 +13,8 @@
 {
     foreach (var item in Model)
     {
-        @await Html.PartialAsync("ArticlePreview", item);
-        //Html.RenderPartialAsync - работает быстрее
+        @await Html.PartialAsync("ArticlePreview", item); // встраивание partial view
+        //@{await Html.RenderPartialAsync("ArticlePreview");} - работает быстрее
     }
 }
 
