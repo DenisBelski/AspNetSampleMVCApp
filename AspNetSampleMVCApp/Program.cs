@@ -26,7 +26,15 @@ namespace AspNetSampleMvcApp
             //    .WriteTo.Console(LogEventLevel.Verbose));
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            // Add services to the container.
+            builder.Services.AddControllersWithViews(options =>
+            {
+                //    options.Filters.Add<CustomActionFilter>();
+                //    //alternative options
+                //    options.Filters.Add(typeof(CustomActionFilter));
+                //    options.Filters.Add(new CustomActionFilter());
+
+            });
 
             var connectionString = builder.Configuration.GetConnectionString("Default");
                 //"Server=DESKTOP-LNVP1TV;Database=GoodNewsAggregatorDataBase;Trusted_Connection=True;";
@@ -41,6 +49,7 @@ namespace AspNetSampleMvcApp
             builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
             builder.Services.AddScoped<ISourceRepository, SourceRepository>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //builder.Services.AddScoped<ArticleCheckerActionFilter>();
 
             var app = builder.Build();
 

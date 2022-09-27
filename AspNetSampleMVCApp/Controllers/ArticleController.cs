@@ -2,6 +2,7 @@
 using AspNetSample.Core;
 using AspNetSample.Core.Abstractions;
 using AspNetSample.Core.DataTransferObjects;
+using AspNetSampleMvcApp.Filters;
 using AspNetSampleMvcApp.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -50,6 +51,8 @@ namespace AspNetSampleMvcApp.Controllers
         //    return PartialView(dto);
         //}
 
+        [TypeFilter(typeof(ArticleCheckerActionFilter))]
+        //[ServiceFilter(typeof(ArticleCheckerActionFilter))] -> registred filter in DI
         public async Task<IActionResult> Details(Guid id)
         {
             var dto = await _articleService.GetArticleByIdAsync(id);
