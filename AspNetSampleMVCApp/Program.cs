@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace AspNetSampleMvcApp
 {
@@ -36,6 +37,16 @@ namespace AspNetSampleMvcApp
 
             });
 
+            builder.Services
+                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.ExpireTimeSpan = TimeSpan.FromHours(1);
+                    options.LoginPath = new PathString(@"/Account/Login");
+                    options.LogoutPath = new PathString(@"/Account/Logout");
+                    options.AccessDeniedPath = new PathString(@"/Account/Login");
+                });
+
             var connectionString = builder.Configuration.GetConnectionString("Default");
                 //"Server=DESKTOP-LNVP1TV;Database=GoodNewsAggregatorDataBase;Trusted_Connection=True;";
 
@@ -44,17 +55,23 @@ namespace AspNetSampleMvcApp
 
             builder.Services.AddScoped<IArticleService, ArticleService>();
             builder.Services.AddScoped<ISourceService, SourceService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IRoleService, RoleService>();
             builder.Services.AddScoped<IAdditionalArticleRepository, ArticleGenericRepository>();
             builder.Services.AddScoped<IRepository<Source>, Repository<Source>>();
+            builder.Services.AddScoped<IRepository<User>, Repository<User>>();
+            builder.Services.AddScoped<IRepository<Role>, Repository<Role>>();
             builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
             builder.Services.AddScoped<ISourceRepository, SourceRepository>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             //builder.Services.AddScoped<ArticleCheckerActionFilter>();
 
-            var app = builder.Build();
-
             builder.Configuration.AddJsonFile("secrets.json");
             //builder.Configuration.Add(new TxtConfigurationSource());
+
+
+            var app = builder.Build();
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -69,6 +86,7 @@ namespace AspNetSampleMvcApp
 
             app.UseRouting();
 
+            app.UseAuthentication(); // Set HttpContext.User
             app.UseAuthorization();
 
             //app.MapControllerRoute(
