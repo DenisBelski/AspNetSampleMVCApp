@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSample.Business", "As
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSample.DataBase", "AspNetSample.DataBase\AspNetSample.DataBase.csproj", "{9E126A6F-E7C0-40AF-AA15-C3BE4039F501}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetSample.Data.Repositories", "AspNetSample.Data.Repositories\AspNetSample.Data.Repositories.csproj", "{ED7FA5C9-6764-4F45-BA07-14B708F73022}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSample.Data.Repositories", "AspNetSample.Data.Repositories\AspNetSample.Data.Repositories.csproj", "{ED7FA5C9-6764-4F45-BA07-14B708F73022}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetSample.Data.Abstractions", "AspNetSample.Data.Abstractions\AspNetSample.Data.Abstractions.csproj", "{6C969597-3291-4853-A4CA-C43717507C86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSample.Data.Abstractions", "AspNetSample.Data.Abstractions\AspNetSample.Data.Abstractions.csproj", "{6C969597-3291-4853-A4CA-C43717507C86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

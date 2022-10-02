@@ -8,14 +8,16 @@ namespace AspNetSampleMvcApp.Models
     {
         [Required]
         [EmailAddress]
-        [Remote("CheckEmail", "Account", HttpMethod = WebRequestMethods.Http.Post, ErrorMessage = "Email is already exists")]
+        [Remote("CheckEmail", "Account",
+            HttpMethod = WebRequestMethods.Http.Post, ErrorMessage = "Email is already exists")]
         public string Email { get; set; }
 
         [Required]
-        [MinLength(8)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Compare(nameof(Password))]
+        [DataType(DataType.Password)]
         public string PasswordConfirmation { get; set; }
     }
 }

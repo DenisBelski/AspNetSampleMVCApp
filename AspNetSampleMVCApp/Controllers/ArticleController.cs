@@ -5,12 +5,14 @@ using AspNetSample.Core.DataTransferObjects;
 using AspNetSampleMvcApp.Filters;
 using AspNetSampleMvcApp.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using Serilog.Events;
 
 namespace AspNetSampleMvcApp.Controllers
 {
+    [Authorize(Roles = "User")]
     public class ArticleController : Controller
     {
         private readonly IArticleService _articleService;
