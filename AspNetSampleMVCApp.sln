@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSample.Data.Abstracti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreSampleMvcWithIdentity", "AspNetCoreSampleMvcWithIdentity\AspNetCoreSampleMvcWithIdentity.csproj", "{F1649E5A-39D4-4DD8-A2E1-73B96D009F2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetFrameworkSampleMvcWithIdentity", "AspNetFrameworkSampleMvcWithIdentity\AspNetFrameworkSampleMvcWithIdentity.csproj", "{A5F21634-EA9A-47DA-A802-DB2CFCC991F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{F1649E5A-39D4-4DD8-A2E1-73B96D009F2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1649E5A-39D4-4DD8-A2E1-73B96D009F2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1649E5A-39D4-4DD8-A2E1-73B96D009F2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5F21634-EA9A-47DA-A802-DB2CFCC991F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5F21634-EA9A-47DA-A802-DB2CFCC991F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5F21634-EA9A-47DA-A802-DB2CFCC991F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5F21634-EA9A-47DA-A802-DB2CFCC991F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
