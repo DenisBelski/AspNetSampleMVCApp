@@ -245,48 +245,63 @@ public class ArticleService : IArticleService
         }
     }
 
-    public async Task AddArticleTextToArticleAsync(Guid articleId)
+
+    public async Task AddArticleTextToArticlesAsync()
     {
-        var article = await _unitOfWork.Articles.GetByIdAsync(articleId);
+        var articlesWithEmptyTextIds = _unitOfWork.Articles
+            .Get()
+            .Where(article => string.IsNullOrEmpty(article.Text))
+            .Select(article => article.Id)
+            .ToList();
 
-        var articleSourceUrl = article.SourceUrl;
-        var web = new HtmlWeb();
-        var htmlDoc = web.Load(articleSourceUrl);
+        foreach (var articleId in articlesWithEmptyTextIds)
+        {
+            await AddArticleTextToArticleAsync(articleId);
+        }
+    }
 
-        //try
-        //{
-        //    var article = await _mediator.Send(new GetArticleByIdQuery { Id = articleId });
-        //    if (article == null)
-        //    {
-        //        throw new ArgumentException($"Article with id: {articleId} doesn't exists",
-        //            nameof(articleId));
-        //    }
-        //    var articleSourceUrl = article.SourceUrl;
-        //    var web = new HtmlWeb();
-        //    var htmlDoc = web.Load(articleSourceUrl);
-        //    var nodes =
-        //        htmlDoc.DocumentNode.Descendants(0)
-        //            .Where(n => n.HasClass("news-text"));
 
-        //    if (nodes.Any())
-        //    {
-        //        var articleText = nodes.FirstOrDefault()?
-        //            .ChildNodes
-        //            .Where(node => (node.Name.Equals("p") || node.Name.Equals("div") || node.Name.Equals("h2"))
-        //                           && !node.HasClass("news-reference")
-        //                           && !node.HasClass("news-banner")
-        //                           && !node.HasClass("news-widget")
-        //                           && !node.HasClass("news-vote")
-        //                           && node.Attributes["style"] == null)
-        //            .Select(node => node.OuterHtml)
-        //            .Aggregate((i, j) => i + Environment.NewLine + j);
-        //        await _mediator.Send(new UpdateArticleTextCommand() { Id = articleId, Text = articleText });
-        //    }
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw;
-        //}
+    //Naming example - "AddArticleTextToOnlinerArticleAsync", will be unique for every source
+    private async Task AddArticleTextToArticleAsync(Guid articleId)
+    {
+        try
+        {
+            var article = await _unitOfWork.Articles.GetByIdAsync(articleId);
+            //var article = await _mediator.Send(new GetArticleByIdQuery { Id = articleId });
+
+            if (article == null)
+            {
+                throw new ArgumentException($"Article with id: {articleId} doesn't exists",
+                    nameof(articleId));
+            }
+
+            var articleSourceUrl = article.SourceUrl;
+            var web = new HtmlWeb();
+            var htmlDoc = web.Load(articleSourceUrl);
+            var nodes = htmlDoc.DocumentNode.Descendants(0).Where(n => n.HasClass("news-text"));
+
+            if (nodes.Any())
+            {
+                var articleText = nodes.FirstOrDefault()?
+                    .ChildNodes
+                    .Where(node => (node.Name.Equals("p") || node.Name.Equals("div") || node.Name.Equals("h2"))
+                                   && !node.HasClass("news-reference")
+                                   && !node.HasClass("news-banner")
+                                   && !node.HasClass("news-widget")
+                                   && !node.HasClass("news-vote")
+                                   && node.Attributes["style"] == null)
+                    .Select(node => node.OuterHtml)
+                    .Aggregate((i, j) => i + Environment.NewLine + j);
+
+                await _unitOfWork.Articles.UpdateArticleTextAsync(articleId, articleText);
+                await _unitOfWork.Commit();
+                //await _mediator.Send(new UpdateArticleTextCommand() { Id = articleId, Text = articleText });
+            }
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
     }
 
 

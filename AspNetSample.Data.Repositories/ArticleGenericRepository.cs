@@ -1,6 +1,7 @@
 ﻿using AspNetSample.Data.Abstractions.Repositories;
 using AspNetSample.DataBase;
 using AspNetSample.DataBase.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNetSample.Data.Repositories
 {
@@ -11,9 +12,13 @@ namespace AspNetSample.Data.Repositories
         {
         }
 
-        public void DoCustomMethod()
+        public async Task UpdateArticleTextAsync(Guid id, string text)
         {
-            throw new NotImplementedException();
+            var article = await DbSet.FirstOrDefaultAsync(a => a.Id.Equals(id));
+            if (article != null)
+            {
+                article.Text = text;
+            }
         }
     }
 }

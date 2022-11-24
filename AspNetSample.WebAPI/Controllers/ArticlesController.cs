@@ -66,27 +66,29 @@ namespace AspNetSample.WebAPI.Controllers
             return Ok();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddArticles([FromBody] AddOrUpdateArticleRequestModel? model)
-        {
-            try
-            {
-                var sources = await _sourceService.GetSourcesAsync();
 
-                foreach (var source in sources)
-                {
-                    await _articleService.GetAllArticleDataFromRssAsync(source.Id, source.RssUrl);
-                    //await _articleService.AddArticleTextToArticlesAsync(new Guid("...."));
-                }
+        //Move this method to the ArticleResourseInitializer controller
+        //[HttpPost]
+        //public async Task<IActionResult> AddArticles([FromBody] AddOrUpdateArticleRequestModel? model)
+        //{
+        //    try
+        //    {
+        //        var sources = await _sourceService.GetSourcesAsync();
 
-                return Ok();
-            }
-            catch (Exception ex)
-            {
+        //        foreach (var source in sources)
+        //        {
+        //            await _articleService.GetAllArticleDataFromRssAsync(source.Id, source.RssUrl);
+        //            await _articleService.AddArticleTextToArticlesAsync();
+        //        }
 
-                return StatusCode(500, new ErrorModel { Message = ex.Message });
-            }
-        }
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        return StatusCode(500, new ErrorModel { Message = ex.Message });
+        //    }
+        //}
 
 
 

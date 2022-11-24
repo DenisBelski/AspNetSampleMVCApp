@@ -4,6 +4,6 @@ namespace AspNetSample.Data.Abstractions.Repositories
 {
     public interface IAdditionalArticleRepository : IRepository<Article>
     {
-        void DoCustomMethod();
+        Task UpdateArticleTextAsync(Guid id, string text);
     }
 }
