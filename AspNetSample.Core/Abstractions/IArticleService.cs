@@ -4,15 +4,15 @@ namespace AspNetSample.Core.Abstractions
 {
     public interface IArticleService
     {
-        Task<List<ArticleDto>> GetArticlesByPageNumberAndPageSizeAsync
-            (int pageNumber, int pageSize);
-
-        Task<List<ArticleDto>> GetNewArticlesFromExternalSourcesAsync();
-
+        Task<List<ArticleDto>> GetArticlesByPageNumberAndPageSizeAsync(int pageNumber, int pageSize);
+        //Task AggregateArticlesFromExternalSourcesAsync();
+        Task<List<ArticleDto>> GetArticlesByNameAndSourcesAsync(string? name, Guid? category);
         Task<ArticleDto> GetArticleByIdAsync(Guid id);
-
         Task<int> CreateArticleAsync(ArticleDto dto);
-        Task<int> PatchAsync(Guid id, List<PatchModel> patchList);
-        Task Do();
+        Task<int> UpdateArticleAsync(Guid id, ArticleDto? patchList);
+        Task GetAllArticleDataFromRssAsync(Guid sourceId, string? sourceRssUrl);
+        Task AddArticleTextToArticleAsync(Guid articleId);
+        Task DeleteArticleAsync(Guid id);
+        //Task AddRateToArticlesAsync();
     }
 }

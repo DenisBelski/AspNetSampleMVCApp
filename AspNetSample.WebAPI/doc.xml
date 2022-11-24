@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AspNetSample.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:AspNetSample.WebAPI.Controllers.ArticlesController">
+            <summary>
+            Controller for work with articles
+            </summary>
+        </member>
+        <member name="M:AspNetSample.WebAPI.Controllers.ArticlesController.GetArticleById(System.Guid)">
+            <summary>
+            Get article from storage with specified id
+            </summary>
+            <param name="id">Id of article</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetSample.WebAPI.Controllers.ArticlesController.GetArticles(AspNetSample.WebAPI.Models.Requests.GetArticlesRequestModel)">
+            <summary>
+            Get articles by article name substring and source id
+            </summary>
+            <param name="model">Contains article name substring and source id</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetSample.WebAPI.Controllers.ArticlesController.DeleteArticle(System.Guid)">
+            <summary>
+            Delete Article
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AspNetSample.WebAPI.Controllers.CommentsController">
+            <summary>
+            Controller for work with articles
+            </summary>
+        </member>
+        <member name="M:AspNetSample.WebAPI.Controllers.CommentsController.GetArticleById(System.Guid)">
+            <summary>
+            Get article from storage with specified id
+            </summary>
+            <param name="id">Id of article</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetSample.WebAPI.Controllers.CommentsController.GetArticles(AspNetSample.WebAPI.Models.Requests.GetArticlesRequestModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetSample.WebAPI.Controllers.CommentsController.UpdateArticles(System.Guid,AspNetSample.WebAPI.Models.Requests.AddOrUpdateArticleRequestModel)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetSample.WebAPI.Controllers.CommentsController.UpdateArticles(System.Guid,AspNetSample.WebAPI.Models.Requests.PatchRequestModel)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetSample.WebAPI.Controllers.CommentsController.UpdateArticles(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AspNetSample.WebAPI.Controllers.SoursesController">
+            <summary>
+            Controller for work with articles
+            </summary>
+        </member>
+        <member name="M:AspNetSample.WebAPI.Controllers.SoursesController.GetArticleById(System.Guid)">
+            <summary>
+            Get article from storage with specified id
+            </summary>
+            <param name="id">Id of article</param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetSample.WebAPI.Controllers.SoursesController.GetArticles(AspNetSample.WebAPI.Models.Requests.GetArticlesRequestModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AspNetSample.WebAPI.Models.Requests.AddOrUpdateArticleRequestModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AspNetSample.WebAPI.Models.Requests.AddOrUpdateArticleRequestModel.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AspNetSample.WebAPI.Models.Requests.AddOrUpdateArticleRequestModel.Category">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AspNetSample.WebAPI.Models.Requests.AddOrUpdateArticleRequestModel.ShortSummary">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AspNetSample.WebAPI.Models.Requests.AddOrUpdateArticleRequestModel.Text">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AspNetSample.WebAPI.Models.Responses.ErrorModel">
+            <summary>
+            Model for returning errors from api
+            </summary>
+        </member>
+        <member name="P:AspNetSample.WebAPI.Models.Responses.ErrorModel.Message">
+            <summary>
+            Error message
+            </summary>
+        </member>
+    </members>
+</doc>

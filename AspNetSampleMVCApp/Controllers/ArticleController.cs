@@ -47,6 +47,7 @@ namespace AspNetSampleMvcApp.Controllers
                 return BadRequest();
             }
         }
+
         // контоллеры для PartialView не нужны! (без этого блока также работает)
         //public IActionResult ArticlePreview(ArticleDto dto)
         //{
@@ -169,7 +170,7 @@ namespace AspNetSampleMvcApp.Controllers
                         }
                     }
 
-                    await _articleService.PatchAsync(model.Id, patchList);
+                    //await _articleService.PatchAsync(model.Id, patchList);
 
                     //await _articleService.CreateArticleAsync(dto);
 
